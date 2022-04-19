@@ -223,6 +223,6 @@ public class Main {
             }
         } while (user != 5);
         System.out.println("\nThe program is over");
-        System.out.println("\nCreated By:\t<Nestor Quiroga\tLaura Gutierrez/>");
+        System.out.println("\nCreated By:\t<Nestor Quiroga<>\t<>Laura Gutierrez/>");
     }
 }
