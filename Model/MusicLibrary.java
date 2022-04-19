@@ -124,6 +124,8 @@ public class MusicLibrary {
         preloadedSongs.add(new Song("Colors","Halsey", 5, 212, 2019, 7, 22, "Pop", "link0000005.jpg", "This song is the greatest hits"));
         preloadedSongs.add(new Song("Stay","Alessia Cara", 6, 156, 2019, 2, 22, "Pop", "link0000006.jpg", "This song is the greatest hits"));
         preloadedSongs.add(new Song("Safe and Sound","Capital Cites", 7, 149, 2017, 2, 22, "Electronic", "link0000007.jpg", "This song is the greatest hits"));
+        preloadedSongs.add(new Song("I miss you","Blink-182",8,228,2004,2,4,"Pop-Rock","link0008.jpg","Created in October 2003 by the American band Blink-182 and released in 2004."));
+        preloadedSongs.add(new Song("In the shadows","The Ramous",9,220,2003,2,3,"Rock","link00009.jpg","Song by the finnish band The Rasmus from the album Dead Letters"));
         this.songs= preloadedSongs;
     }
 
