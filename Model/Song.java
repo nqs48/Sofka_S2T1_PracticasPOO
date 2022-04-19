@@ -1,6 +1,5 @@
 package Model;
 
-
 import java.util.Calendar;
 
 public class Song{
@@ -66,7 +65,7 @@ public class Song{
     public String getDescription() { return description; }
 
 
-    public void showInformationS(Song i) {
+    public void showInformationS(Model.Song i) {
         System.out.println("\n\tId Song: " + i.getId() + "\n\t\tTitle: " + i.getName() + "\n\t\tAuthor: " + i.getAuthor() +
                 "\n\t\tDate: " + i.getDatePublish().get(Calendar.YEAR) + "/" + i.getDatePublish().get(Calendar.MONTH) +
                 "/" + i.getDatePublish().get(Calendar.DAY_OF_MONTH)+ "\n\t\tDuration: " + i.getDuration()+
