@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,19 +9,28 @@ public class Menu {
     }
 
     public int printPreloadMenu(String separator){
-        int user;
-        System.out.println("\n\t\t\t\tSIMPLIFY | MENU"+separator);
-        System.out.println("> Do you want preload DATA? (Songs and Playlist)");
-        System.out.println("| 1. Yes: (1)");
-        System.out.println("| 2. No: (2)");
-        System.out.println("\nEnter the number of your process:"+separator);
-        Scanner inputPreload = new Scanner(System.in);
-        user=inputPreload.nextInt();
-        return user;
+        try{
+            int user;
+            System.out.println("\n\t\t\t\tSIMPLIFY | MENU"+separator);
+            System.out.println("> Do you want preload DATA? (Songs and Playlist)");
+            System.out.println("| 1. Yes: (1)");
+            System.out.println("| 2. No: (2)");
+            System.out.println("\nEnter the number of your process:"+separator);
+            Scanner inputPreload = new Scanner(System.in);
+
+            user=inputPreload.nextInt();
+            return user;
+        }catch (InputMismatchException e ){
+            System.out.println("\n\tIncorrect selection data!!\n\nError: "+e);
+            return 0;
+        }
+
+
     }
 
 
     public int printMainMenu(String separator){
+        try{
         int user;
         System.out.println("\n\t\t\t\tSIMPLIFY | MENU"+separator);
         System.out.println("| 1. Songs: (1)");
@@ -32,9 +42,14 @@ public class Menu {
         Scanner inputMain = new Scanner(System.in);
         user= inputMain.nextInt();
         return user;
+    }catch (InputMismatchException e ){
+        System.out.println("\n\tIncorrect selection data, try again.\n\nError: \n"+e);
+        return 0;
+    }
     }
 
     public int printMenuSong(String separator){
+        try{
         int user;
         System.out.println("\n\n\t\t\t\tSONGS | SUBMENU"+separator);
         System.out.println("| 1. Create Song: (1)");
@@ -45,9 +60,14 @@ public class Menu {
         Scanner inputSongs = new Scanner(System.in);
         user= inputSongs.nextInt();
         return user;
+    }catch (InputMismatchException e ){
+        System.out.println("\n\tIncorrect selection data, try again.\n\nError: "+e);
+        return 0;
+    }
     }
 
     public int printMenuPlayList(String separator) {
+        try{
         int user;
         System.out.println("\n\n\t\t\t\tPLAYLIST | SUBMENU" + separator);
         System.out.println("| 1. Create PlayList: (1)");
@@ -57,9 +77,14 @@ public class Menu {
         Scanner inputPlaylist = new Scanner(System.in);
         user = inputPlaylist.nextInt();
         return user;
+    }catch (InputMismatchException e ){
+        System.out.println("\n\tIncorrect selection data, try again.\n\nError: "+e);
+        return 0;
+    }
     }
 
     public int printMenuFilters(String separator){
+        try{
         int user;
         System.out.println("\n\n\t\t\tFILTERS SONGS | SUBMENU"+separator);
         System.out.println("| 1. Filter Gender: (1)");
@@ -70,9 +95,14 @@ public class Menu {
         Scanner inputFilter = new Scanner(System.in);
         user= inputFilter.nextInt();
         return user;
+    }catch (InputMismatchException e ){
+        System.out.println("\n\tIncorrect selection data, try again.\n\nError: "+e);
+        return 0;
+    }
     }
 
     public int printMenuSorts(String separator){
+        try{
         int user;
         System.out.println("\n\n\t\t\t\tSORTS SONGS | SUBMENU"+separator);
         System.out.println("| 1. Sort Duration: (1)");
@@ -82,6 +112,10 @@ public class Menu {
         Scanner inputSort = new Scanner(System.in);
         user= inputSort.nextInt();
         return user;
+    }catch (InputMismatchException e ){
+        System.out.println("\n\tIncorrect selection data, try again.\n\nError: "+e);
+        return 0;
+    }
     }
 
 

@@ -8,7 +8,7 @@ import Model.Menu;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static <exception> void main(String[] args) {
 
         Menu menu = new Menu();
         MusicLibrary simplify = new MusicLibrary();
@@ -17,17 +17,18 @@ public class Main {
         int userPreload, user,userSongs, userPlaylist, userFilter, userSort;
 
         userPreload = menu.printPreloadMenu(separator);
-        if (userPreload == 1){
-            System.out.println("\n\t>> Library init with Preloaded data:");
-            simplify.preLoadedMusic();
-            simplify.preLoadedPlayList();
-        }else if(userPreload == 2){
-            System.out.println("\n>> Library init empty");
-        }else{
-            System.out.println("\n>> Invalid Selection, The library will be init empty");
-        }
+            if (userPreload == 1){
+                System.out.println("\n\t>> Library init with Preloaded data:");
+                simplify.preLoadedMusic();
+                simplify.preLoadedPlayList();
+            }else if(userPreload == 2){
+                System.out.println("\n>> Library init empty");
+            }else{
+                System.out.println("\n>> Invalid Selection, The library will be init empty");
+            }
 
         do {
+
             user = menu.printMainMenu(separator);
             switch (user) {
                 case 1 -> {
@@ -35,39 +36,44 @@ public class Main {
                         userSongs= menu.printMenuSong(separator);
                         switch (userSongs) {
                             case 1 -> {
-                                System.out.println("\n\n\t\t\t\t+CREATE SONG"+separator);
-                                System.out.println("\nEnter the song's name: ");
-                                Scanner name = new Scanner(System.in);
-                                String s1Name = name.nextLine();
-                                System.out.println("\nEnter the song's Author:");
-                                Scanner author = new Scanner(System.in);
-                                String s1author = author.nextLine();
-                                System.out.println("\nPublication date: \nEnter the year: (4 Digits):");
-                                Scanner year = new Scanner(System.in);
-                                int s1Year = year.nextInt();
-                                System.out.println("\nEnter the month: (1 or 2 Digits):");
-                                Scanner month = new Scanner(System.in);
-                                int s1Month = month.nextInt();
-                                System.out.println("\nEnter the day (1 or 2  Digits): ");
-                                Scanner day = new Scanner(System.in);
-                                int s1Day = day.nextInt();
-                                System.out.println("\nEnter the song's duration (seconds): ");
-                                Scanner duration = new Scanner(System.in);
-                                int s1Duration = duration.nextInt();
-                                System.out.println("\nEnter the song's gender: ");
-                                Scanner gender = new Scanner(System.in);
-                                String s1Gender = gender.nextLine();
-                                System.out.println("\nEnter the link song's cover: ");
-                                Scanner cover = new Scanner(System.in);
-                                String s1Cover = cover.nextLine();
-                                System.out.println("\nEnter the song's description: ");
-                                Scanner description = new Scanner(System.in);
-                                String s1Description = description.nextLine();
-                                int autogenerateId = simplify.getSongs().size() + 1;
-                                Song s1 = new Song(s1Name, s1author, autogenerateId, s1Duration, s1Year, s1Month, s1Day, s1Gender, s1Cover, s1Description);
-                                simplify.getSongs().add(s1);
-                                System.out.println("\n\tThe song was created successfully!!");
-                                s1.showInformationS(s1);
+                                try {
+
+                                    System.out.println("\n\n\t\t\t\t+CREATE SONG" + separator);
+                                    System.out.println("\nEnter the song's name: ");
+                                    Scanner name = new Scanner(System.in);
+                                    String s1Name = name.nextLine();
+                                    System.out.println("\nEnter the song's Author:");
+                                    Scanner author = new Scanner(System.in);
+                                    String s1author = author.nextLine();
+                                    System.out.println("\nPublication date: \nEnter the year: (4 Digits):");
+                                    Scanner year = new Scanner(System.in);
+                                    int s1Year = year.nextInt();
+                                    System.out.println("\nEnter the month: (1 or 2 Digits):");
+                                    Scanner month = new Scanner(System.in);
+                                    int s1Month = month.nextInt();
+                                    System.out.println("\nEnter the day (1 or 2  Digits): ");
+                                    Scanner day = new Scanner(System.in);
+                                    int s1Day = day.nextInt();
+                                    System.out.println("\nEnter the song's duration (seconds): ");
+                                    Scanner duration = new Scanner(System.in);
+                                    int s1Duration = duration.nextInt();
+                                    System.out.println("\nEnter the song's gender: ");
+                                    Scanner gender = new Scanner(System.in);
+                                    String s1Gender = gender.nextLine();
+                                    System.out.println("\nEnter the link song's cover: ");
+                                    Scanner cover = new Scanner(System.in);
+                                    String s1Cover = cover.nextLine();
+                                    System.out.println("\nEnter the song's description: ");
+                                    Scanner description = new Scanner(System.in);
+                                    String s1Description = description.nextLine();
+                                    int autogenerateId = simplify.getSongs().size() + 1;
+                                    Song s1 = new Song(s1Name, s1author, autogenerateId, s1Duration, s1Year, s1Month, s1Day, s1Gender, s1Cover, s1Description);
+                                    simplify.getSongs().add(s1);
+                                    System.out.println("\n\tThe song was created successfully!!");
+                                    s1.showInformationS(s1);
+                                }catch (InputMismatchException e ){
+                                System.out.println("\n\tIncorrect selection data!!  \n"+e);
+                            }
                             }
                             case 2 -> {
                                 System.out.println("\n\n\t\t\t\t+VIEW SONGS"+separator);
@@ -81,7 +87,7 @@ public class Main {
                             }
                             case 3 -> {
                                 System.out.println("\n\n\t\t\t+ADD SONG TO PLAYLIST"+separator);
-                                if (simplify.getPlayLists().size() != 0 && simplify.getSongs().size() != 0) {
+                                if ((simplify.getPlayLists().size() != 0) && (simplify.getSongs().size() != 0)) {
                                     for (Song i : simplify.getSongs()) {
                                         i.showInformationS(i);
                                     }
@@ -200,12 +206,15 @@ public class Main {
                             case 1 -> {
                                 System.out.println("\n\n\t\t\t\t+SORT DURATION"+separator);
                                 ArrayList<Song> sortSongsDuration = simplify.sortSongsDuration(simplify.getSongs());
-                                if (sortSongsDuration.size() != 0) {
-                                    System.out.println("\n\n\tSort for DURATION \t-\tCant: " + sortSongsDuration.size());
-                                    sortSongsDuration.forEach((s)->s.showInformationS(s));
-                                } else {
-                                    System.out.println("\n\tCan't find Songs, Add Songs!!\n");
-                                }
+
+                                    if (sortSongsDuration.size() != 0) {
+                                        System.out.println("\n\n\tSort for DURATION \t-\tCant: " + sortSongsDuration.size());
+                                        sortSongsDuration.forEach((s)->s.showInformationS(s));
+                                    } else {
+                                        System.out.println("\n\tCan't find Songs, Add Songs!!\n");
+                                    }
+
+
                             }
                             case 2 -> {
                                 System.out.println("\n\n\t\t\t\t+SORT PUBLISH DATE"+separator);
@@ -224,5 +233,6 @@ public class Main {
         } while (user != 5);
         System.out.println("\nThe program is over");
         System.out.println("\nCreated By:\t<Nestor Quiroga<>\t<>Laura Gutierrez/>");
+
     }
 }
