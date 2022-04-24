@@ -1,18 +1,25 @@
 package Model;
 
-import Model.Song;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-
+/**
+ * @author Nestor Quiroga
+ * @author Laura Gutierrez
+ * Class MusicLibrary general class to contains the methods
+ */
 public class MusicLibrary {
+    /**
+     * Represents the list of general songs
+     */
     private ArrayList<Song> songs;
-    private ArrayList<Playlist> playLists;
-
 
     /**
-     * Constructor class MusicLibrary, set the preLoadedMusic for the attribute 'songs', and it declares a new array for attribute 'playlist'.
+     * Represents the list of playlists
+     */
+    private ArrayList<Playlist> playLists;
+
+    /**
+     * Constructor class MusicLibrary, set empty lists for the attribute 'songs' and 'playlists'.
      */
     public MusicLibrary() {
         this.songs= new ArrayList<>();
@@ -44,7 +51,7 @@ public class MusicLibrary {
     public ArrayList<Song> filter(ArrayList<Song> library,  int year){
         ArrayList<Song> yearSongs= new ArrayList<>();
         for (Song s:library) {
-            if(s.getDatePublish().get(Calendar.YEAR)==year){
+            if(s.getPublicationDate().get(Calendar.YEAR)==year){
                 yearSongs.add(s);
             }
         }
@@ -68,7 +75,12 @@ public class MusicLibrary {
         return null;
     }
 
-
+    /**
+     *
+     * @param playLists List of playlists, type arrayList
+     * @param idList Key for filter, type int
+     * @return findPlayList If found a playList with this ID, return this playList else returns a value null.
+     */
     public Playlist idFilterPlayList(ArrayList<Playlist> playLists,  int idList){
         Playlist findPlayList;
         for (Playlist p : playLists) {
@@ -80,6 +92,11 @@ public class MusicLibrary {
         return null;
     }
 
+    /**
+     *
+     * @param songs Current Song's List, type arrayList
+     * @return currentlyGenders with the currently genders without repeat, type arraylist
+     */
     public ArrayList<String> findGenders(ArrayList<Song> songs){
         ArrayList<String> currentlyGenders= new ArrayList<>();
         for (Song s:songs) {
@@ -90,31 +107,123 @@ public class MusicLibrary {
         return currentlyGenders;
     }
 
-
+    /**
+     *
+     * @param songs Current Song's List, type arrayList
+     * @return returns the currently songs ordered for duration in a new array, type arraylist
+     */
     public ArrayList<Song> sortSongsDuration(ArrayList<Song> songs){
         ArrayList<Song> unSortSongs= (ArrayList<Song>)songs.clone();
         unSortSongs.sort(Comparator.comparing(Song::getDuration));
         return unSortSongs;
     }
 
+    /**
+     *
+     * @param songs Current Song's List, type arrayList
+     * @return returns the currently songs ordered for date publish in a new array, type arraylist
+     */
     public ArrayList<Song> sortSongsDate(ArrayList<Song> songs){
         ArrayList<Song> unSortSongs= (ArrayList<Song>) songs.clone();
-        unSortSongs.sort(Comparator.comparing(Song::getDatePublish));
+        unSortSongs.sort(Comparator.comparing(Song::getPublicationDate));
         return unSortSongs;
     }
 
-
-    //GETTERS
-
+    /**
+     * Get general songs list
+     * @return returns the library's songs type Arraylist
+     */
     public ArrayList<Song> getSongs() {
         return songs;
     }
 
+    /**
+     * Get general playlist list
+     * @return returns the library's playlist type Arraylist
+     */
     public ArrayList<Playlist> getPlayLists() {
         return playLists;
     }
 
+    /**
+     * Collect data to create a new song
+     * @return returns a new song type Song
+     */
+    public Song collectSongData(){
+        System.out.println("\nEnter the song's name: ");
+        Scanner name = new Scanner(System.in);
+        String s1Name = name.nextLine();
+        System.out.println("\nEnter the song's Author:");
+        Scanner author = new Scanner(System.in);
+        String s1author = author.nextLine();
+        System.out.println("\nPublication date: \nEnter the year: (4 Digits):");
+        Scanner year = new Scanner(System.in);
+        int s1Year = year.nextInt();
+        System.out.println("\nEnter the month: (1 or 2 Digits):");
+        Scanner month = new Scanner(System.in);
+        int s1Month = month.nextInt();
+        System.out.println("\nEnter the day (1 or 2  Digits): ");
+        Scanner day = new Scanner(System.in);
+        int s1Day = day.nextInt();
+        System.out.println("\nEnter the song's duration (seconds): ");
+        Scanner duration = new Scanner(System.in);
+        int s1Duration = duration.nextInt();
+        System.out.println("\nEnter the song's gender: ");
+        Scanner gender = new Scanner(System.in);
+        String s1Gender = gender.nextLine();
+        System.out.println("\nEnter the link song's cover: ");
+        Scanner cover = new Scanner(System.in);
+        String s1Cover = cover.nextLine();
+        System.out.println("\nEnter the song's description: ");
+        Scanner description = new Scanner(System.in);
+        String s1Description = description.nextLine();
+        int autogenerateId = getSongs().size() + 1;
+        return new Song(s1Name,s1author,autogenerateId,s1Duration,s1Year,s1Month,s1Day,s1Gender,s1Cover,s1Description);
+    }
 
+    /**
+     * Choose the song for the ID
+     * @return If found a song with this ID, return this song else returns a value null.
+     */
+    public Song chooseSong(){
+        Song songToAdd;
+        if (getSongs().size() != 0) {
+            System.out.println("\nCurrent Songs : ");
+            getSongs().forEach((s)->System.out.println("\n\tId Song: " + s.getId() + "\n\t\tTitle: " + s.getName() + "\n\t\tAuthor: " + s.getAuthor()+"\n"));
+            System.out.println("\nEnter the song's ID to add: ");
+            Scanner idSong = new Scanner(System.in);
+            int idFilter = idSong.nextInt();
+            songToAdd = idFilterSong(getSongs(), idFilter);
+        } else {
+            System.out.println("\n\tThere aren't SONGS, verify your currently DATA!!\n");
+            return null;
+        }
+        return songToAdd;
+    }
+
+    /**
+     * Choose the playlist for the ID
+     * @return If found a playlist with this ID, return this playlist else returns a value null.
+     */
+    public Playlist choosePlaylist(){
+        Playlist playListSelected;
+        if (getPlayLists().size() != 0){
+            System.out.println("\nCurrent Playlists : ");
+            getPlayLists().forEach(Playlist::showInformation);
+            System.out.println("\nEnter the playList's ID to select: ");
+            Scanner idList = new Scanner(System.in);
+            int idFilterList = idList.nextInt();
+            playListSelected = idFilterPlayList(getPlayLists(), idFilterList);
+        }else {
+            System.out.println("\n\tThere aren't PLAYLIST, verify your currently DATA!!\n");
+            return null;
+        }
+        return playListSelected;
+    }
+
+    /**
+     * Set preloaded songs data to general songs
+     */
     public void preLoadedMusic(){
         ArrayList<Song> preloadedSongs= new ArrayList<>();
         preloadedSongs.add(new Song("Don't Cry","Guns n Roses", 1, 180, 1989, 3, 22, "Rock", "link0000001.jpg", "This song is the greatest hits"));
@@ -154,15 +263,16 @@ public class MusicLibrary {
         preloadedSongs.add(new Song("Maps","Maroon 5", 35, 189, 2014, 6, 16, "Pop-Rock", "link00000025.jpg", "This song is the greatest hits"));
         preloadedSongs.add(new Song("Devuélveme a mi chica","Hombres G", 36, 194, 1985, 1, 4, "Rock", "link00000022.jpg", "Song by the band Hombres G, written and performed by David Summers."));
         preloadedSongs.add(new Song("Titanium","David Guetta", 37, 245, 2011, 11, 29, "Electronic", "link00000023.jpg", "Song produced by David Guetta, Afrojack and Giorgio Tuinfort and written and performed by Australian singer Sia."));
-
         this.songs= preloadedSongs;
     }
 
+    /**
+     * Set preloaded playlist data to playlists
+     */
     public void preLoadedPlayList(){
         ArrayList<Playlist> preloadedPlayLists=new ArrayList<>();
         preloadedPlayLists.add(new Playlist(1,"Favorites"));
         this.playLists=preloadedPlayLists;
     }
-
 
 }
