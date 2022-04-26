@@ -5,14 +5,15 @@ import Model.Playlist;
 import Model.Song;
 import Model.Menu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
-
         Menu menu = new Menu();
         MusicLibrary simplify = new MusicLibrary();
-
         String separator="\n==================================================";
         int userPreload, user,userSongs, userPlaylist, userFilter, userSort;
 
