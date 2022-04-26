@@ -21,39 +21,40 @@ Here's why:
 
 ---
 
-##Project Review:  Simplify
+## Project Review:  Simplify
 
-###Preloaded Data
+
+### Preloaded Data
 
 You can choose preloaded data or init the library empty.
 
 ![image](https://res.cloudinary.com/dindom/image/upload/v1650817328/Sofka%20Assets/PreloadedData_pnvxxd.png)
 
-###Main Menu
+### Main Menu
 
 Features for songs, playlist and functions to order and filter songs.
 
 ![image](https://res.cloudinary.com/dindom/image/upload/v1650989058/Sofka%20Assets/MainMenu_xrqtzv.png)
 
-###Submenu Songs
+### Submenu Songs
 
 Create new songs, add songs to playlists and view the main library's songs.
 
 ![image](https://res.cloudinary.com/dindom/image/upload/v1650989946/Sofka%20Assets/SubMenuSongs_gq78xq.png)
 
-###View your songs
+### View your songs
 
 View the complete list of songs.
 
 ![image](https://res.cloudinary.com/dindom/image/upload/v1650990100/Sofka%20Assets/AllSongs_x8omg2.png)
 
-###Create playlist
+### Create playlist
 
 Add new custom playlist to your library.
 
 ![image](https://res.cloudinary.com/dindom/image/upload/v1650990465/Sofka%20Assets/AddPlaylist_ivggpb.png)
 
-###Credits
+### Credits
 
 Credits to collaborators.
 
